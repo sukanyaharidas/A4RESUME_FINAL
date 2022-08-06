@@ -6,14 +6,22 @@ const resumecred  = require('./src/model/models/resumemodel')
 const signup= require('./src/model/models/signupmodule')
 const jwt = require("jsonwebtoken");
 const temp=require("./src/model/models/templatemodel")
-
+const avltemp=require ("./src/model/models/avltemplates")
+const fs = require("fs");
+const os = require("os");
+const nodemailer=require("nodemailer")
+require("dotenv").config('Backend\.env');
 let currentUser='';
 let tempId=[];
+let id='';
+let string='';
+// let avlTemp=['temp1','temp2','temp3','temp4'];
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
+
 // const { sign } = require("crypto");
 const app = new express();
-const port = 3000;
+const port = 4000;
 
 dotenv.config();
 app.use(cors());
@@ -44,6 +52,27 @@ app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000
 // }
 
 
+function setEnvValue(key, value) {
+
+  // read file from hdd & split if from a linebreak to a array
+  const ENV_VARS = fs.readFileSync("./.env", "utf8").split(os.EOL);
+
+  // find the env we want based on the key
+  const target = ENV_VARS.indexOf(ENV_VARS.find((line) => {
+      return line.match(new RegExp(key));
+  }));
+
+  // replace the key/value with the new value
+  ENV_VARS.splice(target, 1, `${key}=${value}`);
+
+  // write everything back to the file system
+  fs.writeFileSync("./.env", ENV_VARS.join(os.EOL));
+  delete process.env.ADMIN_USERNAME;
+  delete process.env.ADMIN_PASSWORD;
+
+dotenv.config();
+}
+
 
 
 function verifyToken(req,res,next){
@@ -73,6 +102,17 @@ mongoose.connect(process.env.DATABASE_URL, {
   .catch(err => console.log(err));
 
 // requiring routes
+
+
+
+
+app.post('/changeAdminUname',(req,res)=>{
+  setEnvValue("ADMIN_USERNAME", req.body.data);
+})
+
+app.post('/changeAdminPwd',(req,res)=>{
+  setEnvValue("ADMIN_PASSWORD", req.body.data);
+})
 
 
 app.post('/insert', function (req, res) {
@@ -316,6 +356,31 @@ app.post('/login', (req, res) => {
   })
 
 
+  let name='';
+  app.get('/username',(req,res)=>{
+
+    console.log("backend connected for name",currentUser);
+    signup
+    .findOne({emailid:currentUser },(err,data)=>{
+
+      if(!data){
+        
+        console.log("error is",err);
+        res.status(401).send();
+       
+      }
+      else{
+        name=data.fname;
+        console.log('name iss',name)
+
+        res.status(200).send(data);
+       
+      }
+    })
+  })
+
+
+
 // admin login
 app.post('/login_admin', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -342,9 +407,136 @@ app.post('/login_admin', (req, res) => {
 
 
 
+
+
+
+  // admin templates CRUD operations
+  app.get('/avlTemplates', function(req,res){
+  
+    avltemp
+    .findOne({ _id: "62ecc20595b39551c2f9c9b1" },(err,data)=>{
+      if(!data){
+        console.log("error is",err);
+        res.status(401).send();
+      }
+      else{
+       
+        res.status(200).send(data);
+        console.log('temp is',data)
+      }
+    })
+  })
+
+  app.delete('/delete_avltemp/:id',(req,res)=>{
+    console.log('del temp', req.params.id)
+    // const index = avlTemp.indexOf(req.params.id);
+    // avlTemp.splice(index,1);
+
+    avltemp.update({ _id: "62ecc20595b39551c2f9c9b1" },
+     { $pull: { avlTemp: req.params.id }},(err,temp) => {
+      if(temp){
+            res.status(200).send();
+          }
+          else{
+            console.log("aval templates after addition",user)
+            res.status(401).send();
+          }}
+          
+   );
+  })
+
+
+  app.put('/add_avltemp',(req,res)=>{
+
+
+    avltemp.findByIdAndUpdate({_id:"62ecc20595b39551c2f9c9b1"}, {$addToSet:{avlTemp:req.body.data}},{safe: true, new:true},(err,temp) => {
+      if(temp){
+            res.status(200).send();
+          }
+          else{
+            console.log("aval templates after addition",user)
+            res.status(401).send();
+          }
+  });
+ 
+  })
+
+
+  // send mail
+
+  app.post('/api/sendmail',(req, res)=>{
+
+
+    resumecred.findOne({userid:currentUser},(err,data)=>{
+      if(data){
+        id=data._id
+      string= id.valueOf()
+        console.log('checkid',string)
+        res.status(200).send()
+      }else{
+        res.send()
+      }
+  console.log(data);
+  console.log(string)
+  let link=req.body.mail +'/'+id
+    console.log(link)
+   
+    var transporter = nodemailer.createTransport({
+  
+      service : "gmail",
+      auth :{
+        user:"testtmailforapp@gmail.com",
+         pass:"vrvxhgqxqrtfxtfd"
+      },
+      tls : { rejectUnauthorized: false }
+    });
+  
+    var mailOptions = {
+        from: 'testtmailforapp@gmail.com',
+        to: currentUser,
+        // to: this.data.email,
+        subject: 'A4 Resume',
+        html: `<p>Thankyou for choosing our platform. Click the below link to view your Resume.</p>
+        <p>Click on the link to get your resume <a href='${link}'>Link</a> </p>`
+  
+    };
+  
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+        } else {
+            console.log('email send:'+info.response);
+        }
+    });
+  
+  });
+  })
+
+
+// get user details to admin page
+app.get('/api/displayusercred',(req,res)=>{
+  signup.find()
+  .then((data1)=>{
+    res.send(data1)
+  })
+})
+
+app.delete('/api/deleteusercred/:id',(req,res)=>{
+id=req.params.id
+signup.findByIdAndRemove({"_id":id })
+.then(()=>{
+  console.log('deleted');
+  res.send()
+})
+})
+
 app.get('/', (req, res) => {
     res.send('App is working Fine')
 })
+
+
+
+
 
 // port listening
 app.listen(port, function () {

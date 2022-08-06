@@ -1,0 +1,21 @@
+img{
+    width:700px;
+    height:600px;
+    margin-left: 4em;;
+}
+
+p{
+    word-wrap: break-word;  inline-size: 400px;
+    overflow-wrap: break-word;
+    margin-left: 13em;
+    margin-top:8em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color: rgb(17, 17, 66);
+    font-weight: bold;
+    font-size: larger;
+}
+
+.btn{
+    margin-left:14em;
+}

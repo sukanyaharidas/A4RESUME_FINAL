@@ -1,8 +1,119 @@
-<div class="cont">
-<input type="button" value="Temp1" (click)="temp1()"/>
-<input type="button" value="Temp2" (click)="temp2()"/>
-<input type="button" value="Temp3" (click)="temp3()"/>
-<input type="button" value="Temp4" (click)="temp4()"/>
-</div>
+<app-header></app-header>
 
 
+<app-sidenav></app-sidenav>
+
+
+<br><br><br>
+<div  style="margin-left:8em;padding-left: 15em;"class="container">
+
+
+    <!-- Card deck -->
+    <div class="card-deck row">
+    
+      <div *ngIf="i>0" class="col-xs-12 col-sm-6 col-md-6">
+      <!-- Card -->
+      <div class="card">
+     
+        <!--Card content-->
+        <div class="card-body">
+    
+          <!--Card image-->
+          <div class="view overlayy">
+            <img class="card-img-top" src="assets/img/temp1.png"  alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+            <div class="overlay"></div>
+            <div class="button"><a class="btn" (click)="temp1()"> Choose </a></div>
+          </div>
+    
+        </div>
+    
+      </div>
+      <!-- Card -->
+      </div>
+    
+     
+
+      <div *ngIf="j>0" class="col-xs-12 col-sm-6 col-md-6">
+        <!-- Card -->
+        <div  class="card">
+       
+          <!--Card content-->
+          <div class="card-body">
+      
+            <!--Card image-->
+            <div class="view overlayy">
+              <img class="card-img-top" src="assets/img/temp2.png"  alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+              <div class="overlay"></div>
+              <div  class="button"><a class="btn" (click)="temp2()">Choose</a></div>
+            </div>
+      
+          </div>
+      
+        </div>
+        <!-- Card -->
+        </div>
+
+
+
+        <div *ngIf="k>0" class="col-xs-12 col-sm-6 col-md-6">
+            <!-- Card -->
+            <div class="card">
+           
+              <!--Card content-->
+              <div class="card-body">
+          
+                <!--Card image-->
+                <div class="view overlayy">
+                  <img class="card-img-top" src="assets/img/temp3.png"  alt="Card image cap">
+                  <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                  <div class="overlay"></div>
+                  <div class="button"><a class="btn" (click)="temp3()" > Choose </a></div>
+                </div>
+          
+              </div>
+          
+            </div>
+            <!-- Card -->
+            </div>
+
+
+
+            <div *ngIf="l>0" class="col-xs-12 col-sm-6 col-md-6">
+                <!-- Card -->
+                <div class="card">
+               
+                  <!--Card content-->
+                  <div class="card-body">
+              
+                    <!--Card image-->
+                    <div class="view overlayy">
+                      <img class="card-img-top" src="assets/img/temp11.PNG"  alt="Card image cap">
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                      <div class="overlay"></div>
+                      <div class="button"><a class="btn" (click)="temp4()" >Choose </a></div>
+                    </div>
+              
+                  </div>
+              
+                </div>
+                <!-- Card -->
+                </div>
+
+
+      
+    </div>
+    <!-- Card deck -->
+      
+
+    
+    </div>

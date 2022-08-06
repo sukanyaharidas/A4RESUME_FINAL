@@ -1,4 +1,5 @@
 <!-- <app-logged-inheader></app-logged-inheader> -->
 <app-header></app-header>
-
+      <app-user *ngIf="role==='user'"></app-user>
+      <app-mytemplates  *ngIf="role==='admin'" ></app-mytemplates>
 <app-sidenav></app-sidenav>

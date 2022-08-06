@@ -1,3 +1,6 @@
+
+<app-header></app-header>
+
 <form [formGroup]="childForm4">
     <br>
     <h4>
@@ -16,7 +19,6 @@
               
               <div class="col-md">
                 
-                <button *ngIf="totalHobbyDetails>1" (click)="deleteHobbyDetails(arrayIndex)" class="btn btn-danger "  >Remove</button>
 
 
               </div>
@@ -28,6 +30,7 @@
               </div>
             </div>
           </div> 
+          <button *ngIf="totalHobbyDetails>1" (click)="deleteHobbyDetails(arrayIndex)" class="btn btn-danger "  >Remove</button>
 
     </form>
     

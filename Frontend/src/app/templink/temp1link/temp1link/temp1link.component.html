@@ -1,0 +1,118 @@
+	
+	
+	<main class="main-content" >
+		<section class="left-section">
+			<div  class="left-content">
+				<div class="profile">
+					<p></p>
+					<p></p>
+					<div *ngFor="let i of Data.personal" class="image">
+						<img  [src]="imageUrl" style="width:250px;height:250px;" class="card-img-top" alt="..."><br><br>
+					</div>
+					<div *ngFor="let i of Data.personal">
+						<h2   class="name">{{i.name}}</h2>
+						<p class="career">{{i.role}}</p>
+					</div>				
+				</div>
+				<div *ngFor="let i of Data.personal" class="contact-info">
+					<h3 class="main-title">Contact Info</h3>
+					<ul>
+						<li>
+							<i class="fa fa-fax"></i>
+							{{i.email}}
+						</li>
+						<li>
+							<i class="fa fa-fax"></i>
+							{{i.address}}
+						</li>
+						<li>
+							<i class="fa fa-fax"></i>
+							{{i.city}}
+						</li>
+						<li>
+							<i class="fa fa-fax"></i>
+							{{i.pin}}
+						</li>
+						<li>
+							<i class="fa fa-phone"></i>
+							{{i.phone}}
+						</li>
+					</ul>
+				</div>
+				<div  class="skills-section">
+					<h3 class="main-title">Skills</h3>
+					<ul *ngFor="let i of Data.skills;">
+						<li>
+							<p class="skill-title">{{i.skill}}</p>
+							<div class="progress-bar">
+								<div class="progress js-progress"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="references-section">
+						<h3 class="main-title">Hobbies</h3>
+						<ul *ngFor="let i of Data.hobbies;">
+							<li>
+								<p class="skill-title">{{i.hobby}}</p>
+							</li>
+						</ul>
+				</div>
+			</div>
+		</section>
+		<section class="right-section">
+			<div class="right-main-content">
+				<section *ngFor="let i of Data.personal"  class="about sect">
+					<h2 class="right-title">About Me</h2>
+					<p class="para">
+						{{i.aboutMe}}
+					</p>
+				</section>
+	
+				<section class="experince sect">
+					<h2 class="right-title">Experience</h2>
+
+					<ul *ngFor="let i of Data.workexp;">
+						<li>
+							<div class="timeline">
+								<div class="left-tl-content">
+									<h5 class="tl-title">{{i.companyName}}</h5>
+									<p class="para">{{i.startDate1}}   --- {{i.endDate1}}</p>
+								</div>
+								<div class="right-tl-content">
+									<div class="tl-content">
+										<h5 class="tl-title-2">{{i.jobProfile}}</h5>
+										<p id="para" class="para">
+											{{i.jobDescription}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>						
+				</section>
+				<section class="education sect">
+					<h2 class="right-title">Education</h2>
+					<ul *ngFor="let i of Data.educational;">
+						<li>
+							<div class="timeline">
+								<div class="left-tl-content">
+									<h5 class="tl-title">{{i.institution}}</h5>
+									<p class="para">{{i.startDate}} --- {{i.endDate}}</p>
+								</div>
+								<div class="right-tl-content">
+									<div class="tl-content">
+										<h5 class="tl-title-2">{{i.qualification}}</h5>
+										<h3>{{i.course}}</h3>
+										<p id="para"class="para">
+											{{i.courseDetails}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</section>
+	</main>

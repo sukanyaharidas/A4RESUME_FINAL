@@ -1,0 +1,86 @@
+<div id="doc2" class="yui-t7"   id="contentToConvert">
+    <div id="inner">
+           <div id="hd">
+            <div class="yui-gc">
+                <div class="yui-u first">
+                    <h1></h1>
+                    <h2></h2>
+                </div>
+                <div class="yui-u">
+                    <div  *ngFor="let i of Data.personal" class="contact-info">
+                        <h3 style="font-weight:900;font-size:30px">{{i.name}}</h3>
+                        <h3>{{i.email}}</h3>
+                        <h3>{{i.phone}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                   <div class="row">
+                    <div class="col-7">
+                        <div class="yui-gf">
+                            <div *ngFor="let i of Data.personal" class="yui-u about">
+                                <p class="enlarge">{{i.aboutMe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="yui-gf">
+                            <div *ngFor="let i of Data.personal" class="yui-u about">
+                                <h2>Address</h2>
+                                <p class="enlarge">{{i.address}}
+                                </p>
+                                <p class="enlarge">{{i.city}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                    <div   class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Skills</h2>
+                        </div>
+                        <div *ngFor="let i of Data.skills;let k = index" class="yui-u">
+                            <ul *ngIf="k%2==0" class="talent">
+                                <li>{{i.skill}}</li>
+                            </ul>
+                            <ul *ngIf="k%2!=0" class="talent">
+                                <li>{{i.skill}}</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                    <div class="yui-gf">   
+                        <div class="yui-u first">
+                            <h2>Experience</h2>
+                        </div>
+                        <div *ngFor="let i of Data.workexp" class="yui-u">
+                            <div class="job">
+                                <h2>{{i.companyName}}</h2>
+                                <h3>{{i.jobProfile}}</h3>
+                                <h4>{{i.startDate1}}  ---  {{i.endDate1}}</h4>
+                                <p class="para">{{i.jobDescription}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yui-gf">
+                        <div  class="yui-u first">
+                            <h2>Education</h2>
+                        </div>
+                        <div *ngFor="let i of Data.educational" class="yui-u">
+                            <div class="job">
+                                <h2>{{i.course}}</h2>
+                                <h3>{{i.institution}}</h3>
+                                <h4>{{i.startDate}}  ---  {{i.endDate}}</h4>
+                                <p class="para">{{i.courseDetails}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

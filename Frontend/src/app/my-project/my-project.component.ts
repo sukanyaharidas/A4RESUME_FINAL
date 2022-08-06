@@ -20,22 +20,28 @@ unique=[];
   constructor(public resumeservice:ResumeserviceService) { }
 
   ngOnInit(): void {
-    console.log(this.Data);
-    this.resumeservice.getdata().subscribe((data:any)=>{
-      this.Data = JSON.parse(JSON.stringify(data))
-      console.log(this.Data);
-      this.imageUrl=data.profileImage;
-      console.log(this.imageUrl);
-    })
-  
+
+
+      
   this.resumeservice.getTemp().subscribe((data:any)=>{
     this.Data = JSON.parse(JSON.stringify(data))
     console.log('data in myresume',data);
     this.unique=data.tempid;
     console.log('data in ',this.temparray);
     this.temparray = this.unique.filter((item, i, ar) => ar.indexOf(item) === i);
+    console.log('data in ',this.temparray);
+
     
   })
+    console.log(this.Data);
+    this.resumeservice.getdata().subscribe((data:any)=>{
+      this.Data = JSON.parse(JSON.stringify(data))
+      console.log(this.Data);
+      this.imageUrl=data.profileImage;
+      console.log(this.imageUrl);
+
+    })
+
   }
 
   }

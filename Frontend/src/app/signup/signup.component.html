@@ -1,4 +1,50 @@
-<div class="login">
+
+<app-header></app-header>
+
+
+<div id="signcl">
+  <div class="login">
+      <div class="form">
+        <div class="row"  *ngIf="flag && !showMsg">
+          <div class="col-xs-12">
+            <p class="alert alert-success">
+                <strong>Email Already Exists!</strong> 
+            </p>
+          </div>
+        </div>
+        <div class="row"  *ngIf="showMsg && !flag">
+          <div class="col-xs-12">
+            <p class="alert alert-success">
+                <strong>Registration Success!</strong> 
+            </p>
+          </div>
+        </div>
+      <div>
+  </div>
+  
+  <div id="head1">
+  <h1><b>Sign Up</b></h1></div>
+          <form class="login-form" [formGroup]="form" (ngSubmit)="signUp()">
+          <div>
+              <input type="text" class="form-control"  id="form3Example1cg" placeholder="Enter Full Name" [(ngModel)]="signupUser.fname" name="fname" formControlName="fname" placeholder="Your Name"  required >
+              <small class="error text-danger" *ngIf="form.get('fname').invalid && form.get('fname').touched"><b>Name Required</b></small>
+            </div>
+            <div>
+              <input type="email" class="form-control" placeholder="Enter Email ID" formControlName="emailid" [(ngModel)]="signupUser.emailid" name="emailid" >
+              <small class="error text-danger" *ngIf="form.get('emailid').invalid && form.get('emailid').touched"><b>Email Required</b></small>
+            </div>
+          <div>
+              <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [(ngModel)]="signupUser.password" name="password" />
+              <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched"><b>Password Required</b></small>
+            </div>
+          <button type="submit" id="btnsign" class="btn" [disabled]="!form.valid"><b>Sign Up</b></button><br>
+         <p id="msg"><b>Click </b><strong><a routerLink="/login"><b>here</b></a> </strong><b>to login</b></p>
+        </form>  
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="login">
     <div class="form">
       <div class="row"  *ngIf="flag && !showMsg">
         <div class="col-xs-12">
@@ -35,4 +81,4 @@
        <p>Click <strong><a routerLink="/login">here</a> </strong> to login</p>
       </form>  
     </div>
-  </div>
+  </div> -->

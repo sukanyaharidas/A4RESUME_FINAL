@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ResumeserviceService } from '../resumeservice.service';
 import  jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { AuthServiceService } from '../auth-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-template1',
@@ -14,8 +16,10 @@ export class Template1Component implements OnInit {
    }
 id:any='temp1';
 imageUrl:String='';
+show:boolean=false;
+input:any=''
    
-  constructor(private resumeservice:ResumeserviceService) {}
+  constructor(private resumeservice:ResumeserviceService, public auth:AuthServiceService, private toast:NgToastService) {}
   ngOnInit() {
      console.log(this.Data);
     this.resumeservice.getdata().subscribe((data:any)=>{
@@ -36,7 +40,7 @@ imageUrl:String='';
     // Few necessary setting options
     var imgWidth = 208;
     var pageHeight = 295;
-    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var imgHeight = 280;
     var heightLeft = imgHeight;
      
     const contentDataURL = canvas.toDataURL('image/png')
@@ -53,6 +57,18 @@ saveTemp(){
   this.resumeservice.sendTempid(this.id);
 }
 
+sendmail(){
+  this.auth.mailsend('http://localhost:4200/temp1link').subscribe((mail:any)=>{
+    var respons = JSON.parse(JSON.stringify(mail))
+    // console.log("happened")
+    this.toast.success({detail:"Success Message",summary:"Mail Sent",duration:5000})})
 
+}
 
+copylink(){
+  this.input.select();
+  document.execCommand('copy');
+  console.log(this.input);
+
+}
 }

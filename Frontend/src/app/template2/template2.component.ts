@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResumeserviceService } from '../resumeservice.service';
+import { AuthServiceService } from '../auth-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 
 import  jspdf from 'jspdf';
@@ -14,7 +16,8 @@ export class Template2Component implements OnInit {
   Data:any={}
   id:any='temp2';
   imageUrl:String='';
-  constructor(private resumeservice:ResumeserviceService) { }
+  show:boolean=false
+  constructor(private resumeservice:ResumeserviceService, public auth:AuthServiceService, public toast:NgToastService) { }
 
   ngOnInit(): void {
 
@@ -35,7 +38,7 @@ export class Template2Component implements OnInit {
     // Few necessary setting options
     var imgWidth = 208;
     var pageHeight = 295;
-    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var imgHeight = 280;
     var heightLeft = imgHeight;
      
     const contentDataURL = canvas.toDataURL('image/png')
@@ -48,6 +51,15 @@ export class Template2Component implements OnInit {
     }
     saveTemp(){
       this.resumeservice.sendTempid(this.id);
+    }
+    
+
+    sendmail2(){
+      this.auth.mailsend('http://localhost:4200/temp2link').subscribe((mail:any)=>{
+        var respons = JSON.parse(JSON.stringify(mail))
+        // console.log("happened")
+        this.toast.success({detail:"Success Message",summary:"Mail Sent",duration:5000})
+    })
     }
     
 

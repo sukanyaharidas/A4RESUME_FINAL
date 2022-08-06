@@ -44,6 +44,15 @@ import { EditPersonalComponent } from './edit-data/edit-personal/edit-personal.c
 import { EditHobbyComponent } from './edit-data/edit-hobby/edit-hobby.component';
 import { EditSkillComponent } from './edit-data/edit-skill/edit-skill.component';
 import { EditWorkComponent } from './edit-data/edit-work/edit-work.component';
+import { MytemplatesComponent } from './mytemplates/mytemplates.component';
+import { Temp4linkComponent } from './templink/temp4link/temp4link/temp4link.component';
+import { Temp3linkComponent } from './templink/temp3link/temp3link/temp3link.component';
+import { Temp2linkComponent } from './templink/temp2link/temp2link/temp2link.component';
+import { Temp1linkComponent } from './templink/temp1link/temp1link/temp1link.component';
+import { ManageuserComponent } from './manageuser/manageuser.component';
+import { UserComponent } from './user/user.component';
+import {NgToastModule}  from 'ng-angular-popup'
+
 
 @NgModule({
   declarations: [
@@ -74,7 +83,14 @@ import { EditWorkComponent } from './edit-data/edit-work/edit-work.component';
     EditPersonalComponent,
     EditHobbyComponent,
     EditSkillComponent,
-    EditWorkComponent
+    EditWorkComponent,
+    MytemplatesComponent,
+    Temp1linkComponent,
+    Temp2linkComponent,
+    Temp3linkComponent,
+    Temp4linkComponent,
+    ManageuserComponent,
+    UserComponent
     // ResumePreviewComponent
   ],
   imports: [
@@ -91,7 +107,8 @@ import { EditWorkComponent } from './edit-data/edit-work/edit-work.component';
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgToastModule
 
    
   ],

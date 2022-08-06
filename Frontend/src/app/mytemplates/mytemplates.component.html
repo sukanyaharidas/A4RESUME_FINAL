@@ -1,0 +1,123 @@
+
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div  style="margin-left:8em;padding-left: 15em;"class="container">
+
+    <form class="form-group"style="padding-left:25em;margin-left: 15em; margin-top:4em">
+        <label style="color:rgb(7, 7, 131);font-weight:bold">ADD TEMPLATE</label>&nbsp;
+        <input  type="text" name="tempid" [(ngModel)]="tempid" placeholder="Enter Template ID">&nbsp;
+         <a (click)="addavltemp()" class="btn btn-primary">ADD</a>
+    </form>
+
+    <!-- Card deck -->
+    <div class="card-deck row">
+    
+      <div *ngIf="i>0" class="col-xs-12 col-sm-6 col-md-6">
+      <!-- Card -->
+      <div class="card">
+     
+        <!--Card content-->
+        <div class="card-body">
+    <h3>ID: temp1</h3>
+          <!--Card image-->
+          <div class="view overlayy">
+            <img class="card-img-top" src="assets/img/temp1.png"  alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+            <div class="overlay"></div>
+            <div class="button"><a class="btn" (click)="deleteTemp1('temp1')"> Delete </a></div>
+          </div>
+    
+        </div>
+    
+      </div>
+      <!-- Card -->
+      </div>
+    
+     
+
+      <div *ngIf="j>0" class="col-xs-12 col-sm-6 col-md-6">
+        <!-- Card -->
+        <div  class="card">
+       
+          <!--Card content-->
+          <div class="card-body">
+            <h3>ID: temp2</h3>
+
+            <!--Card image-->
+            <div class="view overlayy">
+              <img class="card-img-top" src="assets/img/temp2.png"  alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+              <div class="overlay"></div>
+              <div  class="button"><a class="btn" (click)="deleteTemp2('temp2')"> Delete</a></div>
+            </div>
+      
+          </div>
+      
+        </div>
+        <!-- Card -->
+        </div>
+
+
+
+        <div *ngIf="k>0" class="col-xs-12 col-sm-6 col-md-6">
+            <!-- Card -->
+            <div class="card">
+           
+              <!--Card content-->
+              <div class="card-body">
+                <h3>ID: temp3</h3>
+
+                <!--Card image-->
+                <div class="view overlayy">
+                  <img class="card-img-top" src="assets/img/temp3.png"  alt="Card image cap">
+                  <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                  <div class="overlay"></div>
+                  <div class="button"><a class="btn" (click)="deleteTemp3('temp3')" > Delete </a></div>
+                </div>
+          
+              </div>
+          
+            </div>
+            <!-- Card -->
+            </div>
+
+
+
+            <div *ngIf="l>0" class="col-xs-12 col-sm-6 col-md-6">
+                <!-- Card -->
+                <div class="card">
+               
+                  <!--Card content-->
+                  <div class="card-body">
+                    <h3>ID: temp4</h3>
+
+                    <!--Card image-->
+                    <div class="view overlayy">
+                      <img class="card-img-top" src="assets/img/temp11.PNG"  alt="Card image cap">
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                      <div class="overlay"></div>
+                      <div class="button"><a class="btn" (click)="deleteTemp4('temp4')" >Delete </a></div>
+                    </div>
+              
+                  </div>
+              
+                </div>
+                <!-- Card -->
+                </div>
+
+
+      
+    </div>
+    <!-- Card deck -->
+      
+
+    
+    </div>

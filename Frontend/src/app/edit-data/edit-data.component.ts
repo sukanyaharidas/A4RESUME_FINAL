@@ -25,7 +25,7 @@ export class EditDataComponent implements OnInit {
   }
   currentTemp:any='';
   imageUrl:String='';
-  isLinear=false;
+  isLinear:boolean=true;
   public personalDetailsForm: FormGroup |any;
   public educationDetailsForm: FormGroup |any;
   public workExperienceDetailsForm: FormGroup |any;
@@ -191,12 +191,15 @@ public addHobbyDetailsItem():void{
 this.resumeservice.senddata(this.Details_update);
 this.router.navigate(['/data_edit']);
 
-const currentRoute = this.router.url;
-
-this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    this.router.navigate([currentRoute]); // navigate to same route
-}); 
 window.location.reload();
+this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  this.router.navigate(['/data_edit']);
+})
+
+
+
+
+// window.location.reload();
 
 
 

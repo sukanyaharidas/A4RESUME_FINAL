@@ -1,0 +1,148 @@
+
+<body id="contentToConvert">
+	<div class="wrapper">
+		<div class="resume">
+			<div class="left">
+				<div class="img_holder">
+					<div *ngFor="let i of Data.personal" class="image">
+						<img  [src]="imageUrl" style="width:250px;height:250px;" class="card-img-top" alt="..."><br><br>
+					</div>				</div>
+				<div class="contact_wrap pb">
+					<div class="title">
+						Contact Details
+					</div>
+					<div class="contact">
+						<ul *ngFor="let i of Data.personal">
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fad fa-mobile-alt" aria-hidden="true"></i></div>
+									<div class="text">{{i.phone}}</div>
+								</div>
+							</li>
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+									<div class="text">{{i.email}}</div>
+								</div>
+							</li>
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fab fa-weebly" aria-hidden="true"></i></div>
+									<div class="text">{{i.address}}</div>
+								</div>
+							</li>
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fas fa-map-signs" aria-hidden="true"></i></div>
+									<div class="text">{{i.city}}</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="skills_wrap pb">
+					<div class="title">
+						Skills
+					</div>
+					<div class="skills">
+						<ul *ngFor="let i of Data.skills">
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fab fa-html5"></i></div>
+									<div class="text">{{i.skill}}</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="hobbies_wrap pb">
+					<div class="title">
+						Hobbies
+					</div>
+					<div class="hobbies">
+						<ul *ngFor="let i of Data.hobbies">
+							<li>
+								<div class="li_wrap">
+									<div class="icon"><i class="fas fa-book"></i></div>
+									<div class="text">{{i.hobby}}</div>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="header">
+					<div *ngFor="let i of Data.personal" class="name_role">
+						<div id="name"class="name">
+							{{i.name}}
+						</div>
+						<div class="role">
+							{{i.role}}
+						</div>
+						<div class="about">
+							{{i.aboutMe}}
+						</div>
+					</div>					
+				</div>
+				<div class="right_inner">
+					<div class="exp">
+						<div class="title">
+							Experience
+						</div>
+						<div class="exp_wrap">
+							<ul *ngFor="let i of Data.workexp">
+								<li>
+									<div class="li_wrap">
+										<div class="date">
+											{{i.startDate1}} --- {{i.endDate1}}
+										</div>
+										<div class="info">
+											<p class="info_title">
+												{{i.jobProfile}}
+											</p>
+											<p class="info_com">
+												{{i.companyName}}
+											</p>
+											<p class="info_cont">
+												{{i.jobDescription}}
+											</p>
+										</div>
+									</div>
+								</li>								
+							</ul>
+						</div>
+					</div>
+					<div class="education">
+						<div class="title">
+							Education
+						</div>
+						<div class="education_wrap">
+							<ul *ngFor="let i of Data.educational">
+								<li>
+									<div class="li_wrap">
+										<div class="date">
+											{{i.startDate}} --- {{i.endDate}}
+										</div>
+										<div class="info">
+											<p class="info_title">
+												{{i.course}}
+											</p>
+											<p class="info_com">
+												{{i.institution}}
+											</p>
+											<p class="info_cont">
+												{{i.courseDetails}}
+											</p>
+										</div>
+									</div>
+								</li>								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

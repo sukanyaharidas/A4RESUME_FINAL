@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResumeserviceService } from '../resumeservice.service';
-
+import { NgToastService } from 'ng-angular-popup';
+import { AuthServiceService } from '../auth-service.service';
 import  jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -13,7 +14,9 @@ export class Template4Component implements OnInit {
 
    Data:any={}
    id:any='temp4';
-  constructor(private resumeservice:ResumeserviceService) {}
+   show:boolean=false
+
+  constructor(private resumeservice:ResumeserviceService, public auth:AuthServiceService,public toast:NgToastService) {}
   ngOnInit() {
     
     this.resumeservice.getdata().subscribe((data:any)=>{
@@ -30,7 +33,7 @@ export class Template4Component implements OnInit {
     // Few necessary setting options
     var imgWidth = 208;
     var pageHeight = 295;
-    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var imgHeight = 280;
     var heightLeft = imgHeight;
      
     const contentDataURL = canvas.toDataURL('image/png')
@@ -44,6 +47,14 @@ export class Template4Component implements OnInit {
 
     saveTemp(){
       this.resumeservice.sendTempid(this.id);
+    }
+
+    sendmail4(){
+      this.auth.mailsend('http://localhost:4200/temp4link').subscribe((mail:any)=>{
+        var respons = JSON.parse(JSON.stringify(mail))
+        // console.log("happened")
+        this.toast.success({detail:"Success Message",summary:"Mail Sent",duration:5000})
+    })
     }
     
 }

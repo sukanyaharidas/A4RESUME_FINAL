@@ -1,5 +1,6 @@
+<app-header></app-header>
 
-<div class="login">
+<!-- <div class="login">
     <div class="form">
       <div class="row"  *ngIf="flag">
         <div class="col-xs-12">
@@ -22,4 +23,32 @@
         <button class="btn" type="submit" class="confirm" data-dismiss="modal" [disabled]="!form.valid">login</button>
       </form>  
     </div>
-  </div>
+  </div> -->
+
+
+  <div id="adminpg">
+    <div class="login">
+        <div class="form">
+          <div class="row"  *ngIf="flag">
+            <div class="col-xs-12">
+              <p class="alert alert-success">
+                  <strong>Wrong Credentials</strong>
+              </p>
+            </div>
+          </div>
+          <form class="login-form" [formGroup]="form" (ngSubmit)="loginAdmin()">
+            <span class="material-icons" id="lock">lock</span>
+    
+            <div>
+              <input type="text" class="form-control" formControlName="username" [(ngModel)]="User.username" placeholder="Enter Username/Email" name="username" required/>
+              <small class="error text-danger" *ngIf="form.get('username').invalid && form.get('username').touched"><b>Username Required</b></small>
+          </div>
+            <div>
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [(ngModel)]="User.password" name="password" required/>
+                <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched"><b>Password Required</b></small>
+            </div>
+            <button class="btn" id="adlog" type="submit" class="confirm" data-dismiss="modal" [disabled]="!form.valid">login</button>
+          </form>  
+        </div>
+      </div>
+    </div>

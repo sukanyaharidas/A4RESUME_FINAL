@@ -17,8 +17,8 @@
           <span class="links_name" >My Projects</span>
         </a>
       </li>
-      <li>
-        <a routerLink="/home_user" >
+      <li *ngIf="adminRole">
+        <a routerLink="/_templates" >
           <i class='bx bxs-grid-alt'></i>
           <span class="links_name">Templates</span>
         </a>
@@ -36,9 +36,9 @@
         </a>
       </li>
       <li *ngIf="adminRole">
-        <a routerLink="/home_user" >
+        <a routerLink="/manageuser" >
           <i class='bx bx-help-circle'></i>
-          <span class="links_name">About Us</span>
+          <span class="links_name">Manage User</span>
         </a>
       </li> 
     </ul>
