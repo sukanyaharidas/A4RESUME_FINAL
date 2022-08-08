@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResumeserviceService } from '../resumeservice.service';
 import { AuthServiceService } from '../auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 
 import  jspdf from 'jspdf';
@@ -17,7 +18,7 @@ export class Template2Component implements OnInit {
   id:any='temp2';
   imageUrl:String='';
   show:boolean=false
-  constructor(private resumeservice:ResumeserviceService, public auth:AuthServiceService, public toast:NgToastService) { }
+  constructor(private resumeservice:ResumeserviceService, public router:Router,public auth:AuthServiceService, public toast:NgToastService) { }
 
   ngOnInit(): void {
 
@@ -51,15 +52,30 @@ export class Template2Component implements OnInit {
     }
     saveTemp(){
       this.resumeservice.sendTempid(this.id);
+      
     }
     
 
     sendmail2(){
-      this.auth.mailsend('http://localhost:4200/temp2link').subscribe((mail:any)=>{
+      this.auth.mailsend('http://localhost:57854/temp2link').subscribe((mail:any)=>{
         var respons = JSON.parse(JSON.stringify(mail))
         // console.log("happened")
         this.toast.success({detail:"Success Message",summary:"Mail Sent",duration:5000})
     })
+    }
+
+    copylink(val: string){
+      const selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = val;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
     }
     
 

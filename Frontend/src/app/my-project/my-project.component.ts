@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ResumeserviceService } from '../resumeservice.service';
 import  jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-project',
@@ -17,9 +18,11 @@ imageUrl:String='';
 temparray=[];  
 unique=[];
 
-  constructor(public resumeservice:ResumeserviceService) { }
+  constructor(public resumeservice:ResumeserviceService, public router:Router) { }
 
   ngOnInit(): void {
+
+//  window.location.reload();
 
 
       

@@ -25,7 +25,7 @@ export class EditDataComponent implements OnInit {
   }
   currentTemp:any='';
   imageUrl:String='';
-  isLinear:boolean=true;
+  isLinear:boolean=false;
   public personalDetailsForm: FormGroup |any;
   public educationDetailsForm: FormGroup |any;
   public workExperienceDetailsForm: FormGroup |any;

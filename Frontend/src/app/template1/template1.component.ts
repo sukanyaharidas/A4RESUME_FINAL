@@ -4,6 +4,7 @@ import  jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { AuthServiceService } from '../auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template1',
@@ -19,7 +20,7 @@ imageUrl:String='';
 show:boolean=false;
 input:any=''
    
-  constructor(private resumeservice:ResumeserviceService, public auth:AuthServiceService, private toast:NgToastService) {}
+  constructor(private resumeservice:ResumeserviceService, public router:Router, public auth:AuthServiceService, private toast:NgToastService) {}
   ngOnInit() {
      console.log(this.Data);
     this.resumeservice.getdata().subscribe((data:any)=>{
@@ -55,20 +56,28 @@ input:any=''
 
 saveTemp(){
   this.resumeservice.sendTempid(this.id);
+
 }
 
 sendmail(){
-  this.auth.mailsend('http://localhost:4200/temp1link').subscribe((mail:any)=>{
+  this.auth.mailsend('http://localhost:57854/temp1link').subscribe((mail:any)=>{
     var respons = JSON.parse(JSON.stringify(mail))
     // console.log("happened")
     this.toast.success({detail:"Success Message",summary:"Mail Sent",duration:5000})})
 
 }
 
-copylink(){
-  this.input.select();
+copylink(val: string){
+  const selBox = document.createElement('textarea');
+  selBox.style.position = 'fixed';
+  selBox.style.left = '0';
+  selBox.style.top = '0';
+  selBox.style.opacity = '0';
+  selBox.value = val;
+  document.body.appendChild(selBox);
+  selBox.focus();
+  selBox.select();
   document.execCommand('copy');
-  console.log(this.input);
-
+  document.body.removeChild(selBox);
 }
 }

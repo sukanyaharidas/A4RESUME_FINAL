@@ -43,7 +43,7 @@ const routes: Routes = [{path:"",component: HomeComponent},
                         {path:"temp1link/:id",component:Temp1linkComponent,canActivate:[AuthGuard,UserGuard]},
                         {path:"temp2link/:id",component:Temp2linkComponent,canActivate:[AuthGuard,UserGuard]},
                         {path:"temp3link/:id",component:Temp3linkComponent,canActivate:[AuthGuard,UserGuard]},
-                        {path:"temp4link:id",component:Temp4linkComponent,canActivate:[AuthGuard,UserGuard]},
+                        {path:"temp4link/:id",component:Temp4linkComponent,canActivate:[AuthGuard,UserGuard]},
                         {path:"\manageuser",component:ManageuserComponent,canActivate:[AuthGuard,RoleGuard]}
                         ]
 

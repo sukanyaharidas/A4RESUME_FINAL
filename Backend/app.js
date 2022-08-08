@@ -240,28 +240,43 @@ app.get('/getTemp', function(req,res){
  app.post('/sendTempid', function (req, res) {
   console.log(currentUser);
   // console.log('reqdata',req.body.data.personal.personalDetails)
-  tempId.push(req.body.id);
-  var data={
-              tempid:tempId,
-              userid:currentUser
-             
-          };
+tempId=req.body.id;
+console.log("new tempid", tempId)
+data={
+  tempid:req.body.id,
+  userid:currentUser
+}
+temp.findOneAndUpdate({userid:currentUser},
+                        {$push:{
+                          tempid:tempId
+                        }}, function(err,doc){
+                          if(doc){
+                            res.status(200);
+                          }
+                          else{
+                            var inputs = new temp(data);
+                                                                  inputs.save();
+                                                                  console.log(data);
+                          }
+                        } )
 
-  temp.findOneAndUpdate({userid:currentUser},
-                              {$set:{
-                                tempid:tempId,
-                                userid:currentUser
+
+ })
+
+  // temp.findOneAndUpdate({userid:currentUser},
+  //                             {$set:{
+  //                               tempid:tempId,
+  //                               userid:currentUser
                                
-                            }},
-                              function(err,doc){
-                                      if(!doc){
-                                        var inputs = new temp(data);
-                                        inputs.save();
-                                        console.log(data);
-                                        res.send(data);
-                                      }   } )
-  
-})
+  //                           }},
+  //                             function(err,doc){
+  //                                     if(!doc){
+  //                                       var inputs = new temp(data);
+  //                                       inputs.save();
+  //                                       console.log(data);
+  //                                       res.send(data);
+  //                                     }   } )
+
 
 
 //  app.post('/sendTempid',function(req,res){
